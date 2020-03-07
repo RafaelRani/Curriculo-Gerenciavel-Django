@@ -13,11 +13,13 @@ def curriculo(request):
 
     # calculando a idade
     now = datetime.now() #obtendo a data atual
+    idade = now.year
     for sb in sobre:
-        idade = now.year - sb.nascimento.year #idade = data atual - ano de nascimento
-        #se o mês de nascimento for menor que o mês atual e o dia de nascimetno menor que o dia atual, subtrai 1 da idade
-        if now.month < sb.nascimento.month and now.day < sb.nascimento.day:
-            idade = idade - 1
+        if sb.nascimento.year:
+            idade = idade - sb.nascimento.year #idade = data atual - ano de nascimento
+            #se o mês de nascimento for menor que o mês atual e o dia de nascimetno menor que o dia atual, subtrai 1 da idade
+            if now.month < sb.nascimento.month and now.day < sb.nascimento.day:
+                idade = idade - 1
 
     info = {
         'sobre': sobre,
